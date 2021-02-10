@@ -12,11 +12,20 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     plugins: [
-       new HTMLWebpackPlugin({
-           template: './index.html'
-       }),
-       new CleanWebpackPlugin()
+        new HTMLWebpackPlugin({
+            template: './index.html'
+        }),
+        new CleanWebpackPlugin()
     ],
+    devServer: {
+        port: 4800,
+        open: true
+    },
+    resolve: {
+        alias: {
+            'jquery-ui': 'jquery-ui-dist/jquery-ui.js'
+        }
+    },
     module: {
         rules: [
             {

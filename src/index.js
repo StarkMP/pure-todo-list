@@ -24,8 +24,8 @@ const data = JSON.parse(localStorage.getItem('todolist_data')) || {
 };
 
 const todolist = new TodoList({
-    $container: $('.app'),
-    props: data
+    data,
+    $container: $('.app')
 });
 
 if (!localStorage.getItem('todolist_data')) {

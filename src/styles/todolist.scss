@@ -73,12 +73,26 @@
         word-wrap: break-word;
         display: flex;
         align-items: center;
+        
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
 
         &-text {
             font-size: 12px;
             color: #FFFFFF;
             width: 100%;
+            overflow: hidden;
+            overflow-wrap: break-word;
             resize: none;
+        }
+
+        &-ghost {
+            opacity: 0;
+        }
+
+        &-draggable {
+            opacity: 1;
         }
     }
 }

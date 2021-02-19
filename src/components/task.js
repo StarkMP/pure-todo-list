@@ -1,10 +1,10 @@
-import View from '../core/view';
+import View from '@core/view';
 
 export default class Task extends View {
-    get html() {
+    template(props) {
         return `
-            <div id="${this.uuid}" class="todolist__task">
-                <div class="todolist__task-text">${this.props.text}</div>
+            <div class="todolist__task">
+                <textarea class="todolist__task-text">${props.text}</textarea>
             </div>
         `;
     }

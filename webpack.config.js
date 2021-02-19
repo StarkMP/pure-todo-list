@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCSSExtactPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
@@ -15,16 +16,20 @@ module.exports = {
         new HTMLWebpackPlugin({
             template: './index.html'
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new MiniCSSExtactPlugin({
+            filename: '[name].[contenthash].css'
+        })
     ],
+    resolve: {
+        alias: {
+            '@core': path.resolve(__dirname, 'src/core'),
+            '@components': path.resolve(__dirname, 'src/components')
+        }
+    },
     devServer: {
         port: 4800,
         open: true
-    },
-    resolve: {
-        alias: {
-            'jquery-ui': 'jquery-ui-dist/jquery-ui.js'
-        }
     },
     module: {
         rules: [
@@ -44,7 +49,7 @@ module.exports = {
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                  "style-loader",
+                  MiniCSSExtactPlugin.loader,
                   "css-loader",
                   "sass-loader",
                 ],

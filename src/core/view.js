@@ -1,29 +1,74 @@
 import $ from 'jquery';
 
-import { randomUUID } from '../utils';
-
 export default class View {
-    get html() {
-        throw new Error('Redeclare this getter');
+    template(props) {
+        return '';
     }
 
-    constructor(props) {
-        this.uuid = randomUUID();
-        this.props = props || {};
-        this.$html = $(this.html);
+    events() {
+        return [];
+    }
 
-        if (!this.$html || !this.$html.length) {
-            throw new Error('Please declare `html`');
+    constructor(params) {
+        const { $el, props } = params;
+
+        if ($el) {
+            if (!$el.length) {
+                throw new Error('jQuery element is not defined');
+            }
+            
+            this.$el = $el;
+        } else {
+            const template = this.template(props);
+
+            this.$el = $(template);
+
+            this.template = function() {
+                return template;
+            }
         }
 
-        this.render();
+        this.init(props);
+
+        this.initEvents();
     }
 
-    mapHTML(view, model_arr) {
-        return model_arr.map(props => {
-            return new view(props).html;
-        }).join('');
+    initEvents() {
+        const events = this.events();
+
+        if (!events.length) {
+            return;
+        }
+
+        this.active_events = events.map(event => {
+            return this.findEl(event[1]).on(event[0], event[2]);
+        });
     }
 
-    render() {}
+    destroyEvents() {
+        if (!this.active_events.length) {
+            return;
+        }
+
+        this.active_events.forEach(event => {
+            event.off();
+        });
+
+        this.active_events = [];
+    }
+
+    findEl(selector) {
+        if (!this.$el || !this.$el.length) {
+            return;
+        }
+
+        return this.$el.find(selector);
+    }
+
+    remove() {
+        this.destroyEvents();
+        this.$el.remove();
+    }
+
+    init(props) {}
 }

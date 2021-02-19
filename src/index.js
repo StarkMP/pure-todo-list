@@ -1,33 +1,36 @@
 import $ from 'jquery';
 
-import TodoList from './components/todolist';
+import App from '@components/app';
 import './styles/app.scss';
 
-const data = JSON.parse(localStorage.getItem('todolist_data')) || {
-    blocks: [
-        {
-            name: 'Backlog',
-            is_default: true,
-            tasks: [
-                { text: 'Тестовое задание' }
-            ]
-        },
-        {
-            name: 'In Progress',
-            tasks: []
-        },
-        {
-            name: 'Done',
-            tasks: []
-        },
-    ]
-};
+function getData() {
+    // имитируем данные с бэка
+    const model = JSON.parse(localStorage.getItem('todolist_data')) || {
+        blocks: [
+            {
+                name: 'Backlog',
+                is_default: true,
+                tasks: [
+                    { text: 'Тестовое задание 1' },
+                    { text: 'Тестовое задание 2' },
+                    { text: 'Тестовое задание 3' }
+                ]
+            },
+            {
+                name: 'In Progress',
+                tasks: []
+            },
+            {
+                name: 'Done',
+                tasks: []
+            },
+        ]
+    };
 
-const todolist = new TodoList({
-    data,
-    $container: $('.app')
-});
-
-if (!localStorage.getItem('todolist_data')) {
-    todolist.save();
+    return model;
 }
+
+new App({
+    $el: $('#app'),
+    props: getData()
+});

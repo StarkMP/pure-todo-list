@@ -1,5 +1,5 @@
-import Task from './task';
-import View from '../core/view';
+import Task from '@components/task';
+import View from '@core/view';
 
 export default class Block extends View {
     template(props) {

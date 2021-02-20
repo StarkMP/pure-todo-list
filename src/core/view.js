@@ -29,7 +29,6 @@ export default class View {
         }
 
         this.init(props);
-
         this.initEvents();
     }
 

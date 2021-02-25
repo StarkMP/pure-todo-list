@@ -1,5 +1,6 @@
 import Task from '@components/task';
 import View from '@core/view';
+import { viewCompare } from '@core/utils';
 
 export default class Block extends View {
     template(props) {
@@ -30,7 +31,8 @@ export default class Block extends View {
         const task = new Task({
             props: {
                 ...params,
-                save: this.save
+                save: this.save,
+                remove: this.removeTask.bind(this)
             }
         });
 
@@ -39,12 +41,25 @@ export default class Block extends View {
         this.save();
     }
 
+    removeTask(task) {
+        const index = this.tasks.findIndex(t => viewCompare(t, task));
+
+        if (index === -1) {
+            return;
+        }
+
+        task.remove();
+        this.tasks.splice(index, 1);
+        this.save();
+    }
+
     initTasks(tasks) {
         this.tasks = tasks.map(props => {
             const task = new Task({
                 props: {
                     ...props,
-                    save: this.save
+                    save: this.save,
+                    remove: this.removeTask.bind(this)
                 }
             });
 

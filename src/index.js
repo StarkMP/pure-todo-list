@@ -1,10 +1,10 @@
 import $ from 'jquery';
 
 import App from '@components/app';
-import './styles/app.scss';
+import '@styles/app.scss';
 
 function getData() {
-    // имитируем данные с бэка
+    // imitating data
     const model = JSON.parse(localStorage.getItem('todolist_data')) || {
         blocks: [
             {

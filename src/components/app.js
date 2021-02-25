@@ -57,6 +57,7 @@ export default class App extends View {
         const task = block_from.tasks.splice(e.oldIndex, 1)[0]
 
         block_to.tasks.splice(e.newIndex, 0, task);
+        task.removeFromBlock = block_to.removeTask.bind(block_to);
 
         this.save();
     }

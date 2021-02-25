@@ -24,7 +24,9 @@ module.exports = {
     resolve: {
         alias: {
             '@core': path.resolve(__dirname, 'src/core'),
-            '@components': path.resolve(__dirname, 'src/components')
+            '@components': path.resolve(__dirname, 'src/components'),
+            '@styles': path.resolve(__dirname, 'src/styles'),
+            '@icons': path.resolve(__dirname, 'src/icons')
         }
     },
     devServer: {

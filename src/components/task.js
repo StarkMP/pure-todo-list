@@ -1,4 +1,5 @@
 import View from '@core/view';
+import icon_remove from '@icons/remove';
 
 export default class Task extends View {
     template(props) {
@@ -19,6 +20,7 @@ export default class Task extends View {
                                 <div class="todolist__task-color">
                                     <input class="todolist__task-color-input" type="color" value=${props.color}>
                                 </div>
+                                ${icon_remove({ class: 'todolist__task-remove' })}
                             </div>
                         </div>
                     </div>
@@ -37,9 +39,10 @@ export default class Task extends View {
     }
 
     init(props) {
-        this.setText(props.text || 'New task');
-        this.setColor(props.color || 'rgb(248, 90, 175)');
+        this.setText(props.text || 'Type something note...');
+        this.setColor(props.color || '#F85AAF');
         this.saveToStorage = props.save;
+        this.removeFromBlock = props.remove;
         this.is_editing = false;
     }
 
@@ -48,8 +51,13 @@ export default class Task extends View {
             ['click', '', this.edit.bind(this)],
             ['click', '.todolist__task-save', this.save.bind(this)],
             ['click', '.todolist__task-cancel', this.cancelEdit.bind(this)],
-            ['change', '.todolist__task-color-input', this.onColorChange.bind(this)]
+            ['change', '.todolist__task-color-input', this.onColorChange.bind(this)],
+            ['click', '.todolist__task-remove', this.onRemove.bind(this)]
         ];
+    }
+
+    onRemove() {
+        this.removeFromBlock(this);
     }
 
     onColorChange() {

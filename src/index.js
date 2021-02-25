@@ -11,9 +11,9 @@ function getData() {
                 name: 'Backlog',
                 is_default: true,
                 tasks: [
-                    { text: 'Тестовое задание 1' },
-                    { text: 'Тестовое задание 2' },
-                    { text: 'Тестовое задание 3' }
+                    { text: 'Тестовое задание 1', color: '#F85AAF' },
+                    { text: 'Тестовое задание 2', color: '#F85AAF' },
+                    { text: 'Тестовое задание 3', color: '#F85AAF' }
                 ]
             },
             {

@@ -1,5 +1,12 @@
 import $ from 'jquery';
 
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
 export default class View {
     template(props) {
         return '';
@@ -9,8 +16,17 @@ export default class View {
         return [];
     }
 
+    selectors() {
+        return {};
+    }
+
     constructor(params) {
-        const { $el, props } = params;
+        if (new.target === View) {
+            throw new Error('Cannot construct View instances directly')
+        }
+
+        const { $el, props = {} } = params;
+        this.view_id = uuidv4();
 
         if ($el) {
             if (!$el.length) {
@@ -40,7 +56,19 @@ export default class View {
         }
 
         this.active_events = events.map(event => {
-            return this.findEl(event[1]).on(event[0], event[2]);
+            const e = {
+                $selector: event[1],
+                name: event[0],
+                callback: event[2]
+            };
+
+            if (e.$selector) {
+                this.$el.on(e.name, e.$selector, e.callback);
+            } else {
+                this.$el.on(e.name, e.callback);
+            }
+
+            return e;
         });
     }
 
@@ -49,11 +77,19 @@ export default class View {
             return;
         }
 
-        this.active_events.forEach(event => {
-            event.off();
+        this.active_events.forEach(e => {
+            if (e.$selector) {
+                this.$el.off(e.name, e.$selector, e.callback);
+            } else {
+                this.$el.off(e.name, e.callback);
+            }
         });
 
         this.active_events = [];
+    }
+
+    $(selector) {
+        return this.findEl(this.selectors()[selector]);
     }
 
     findEl(selector) {

@@ -1,0 +1,20 @@
+.btn {
+    cursor: pointer;
+    background: #5AACF8;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    color: #FFFFFF;
+    height: 30px;
+    text-transform: uppercase;
+    padding: 0 12px;
+
+    &_accept {
+        background: #2fb42f;
+    }
+
+    &_cancel {
+        background: #b42f2f;
+    }
+}

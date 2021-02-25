@@ -7,22 +7,50 @@ export default class Block extends View {
             <div class="todolist__block">
                 <div class="todolist__block-name">${props.name}</div>
                 <span class="todolist__block-name-divider"></span>
-                <div class="todolist__block-tasks"></div>
+                <div data-id=${this.view_id} class="todolist__block-tasks"></div>
             </div>
         `;
     }
 
     init(props) {
         this.name = props.name;
-        this.is_default = props.is_default;
+        this.is_default = props.is_default ?? false;
+        this.save = props.save;
 
-        this.renderTasks(props.tasks);
+        this.initTasks(props.tasks);
     }
 
-    renderTasks(tasks) {
-        tasks.forEach(props => {
-            const tasks = new Task({ props });
-            this.findEl('.todolist__block-tasks').append(tasks.$el);
+    selectors() {
+        return {
+            list: '.todolist__block-tasks'
+        };
+    }
+
+    createTask(params = {}) {
+        const task = new Task({
+            props: {
+                ...params,
+                save: this.save
+            }
+        });
+
+        this.tasks.unshift(task);
+        this.$('list').prepend(task.$el);
+        this.save();
+    }
+
+    initTasks(tasks) {
+        this.tasks = tasks.map(props => {
+            const task = new Task({
+                props: {
+                    ...props,
+                    save: this.save
+                }
+            });
+
+            this.$('list').append(task.$el);
+            
+            return task;
         });
     }
 }

@@ -7,16 +7,6 @@
     flex-direction: column;
 
     &__btn {
-        cursor: pointer;
-        background: #5AACF8;
-        border-radius: 6px;
-        font-weight: bold;
-        font-size: 14px;
-        text-align: center;
-        color: #FFFFFF;
-        width: 106px;
-        height: 36px;
-        text-transform: uppercase;
         margin-bottom: 28px;
     }
 
@@ -57,16 +47,14 @@
         }
 
         &-tasks {
-            margin-top: 15px;
             height: 100%;
             width: 100%;
-            padding: 0 25px;
+            padding: 15px 25px;
             overflow-y: auto;
         }
     }
 
     &__task {
-        background: #F85AAF;
         box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
         border-radius: 6px;
         padding: 15px 19px;
@@ -82,9 +70,7 @@
             font-size: 12px;
             color: #FFFFFF;
             width: 100%;
-            overflow: hidden;
             overflow-wrap: break-word;
-            resize: none;
         }
 
         &-ghost {
@@ -93,6 +79,79 @@
 
         &-draggable {
             opacity: 1;
+        }
+
+        &-edit {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .7);
+
+            &-panel {
+                display: flex;
+                flex-direction: column;
+                width: 275px;
+                position: fixed;
+            }
+        }
+
+        &-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &-additional {
+            display: flex;
+            align-items: center;
+        }
+
+        &-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+
+            &-input {
+                display: block;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+            }
+        }
+
+        &-buttons {
+            margin-top: 7px;
+            display: flex;
+            align-items: center;
+
+            .btn:not(:last-child) {
+                margin-right: 7px;
+            }
+        }
+
+        &-area {
+            &-layout {
+                background-color: #fff;
+                border: 1px solid #ced4da;
+                border-radius: 6px;
+                padding: 15px 19px;
+                width: 100%;
+            }
+
+            color: rgb(133, 133, 133);
+            font-size: 12px;
+            width: 100%;
+            height: 112px;
+            overflow: hidden;
+            overflow-wrap: break-word;
+            resize: none;
+
+            &::placeholder {
+                color: rgb(133, 133, 133);
+            }
         }
     }
 }

@@ -1,3 +1,3 @@
-# todo-list
+# Simple todo list
 
-Работа для портфолио.
+Job for portfolio.

@@ -1,10 +1,10 @@
 import Sortable from 'sortablejs';
 import $ from 'jquery';
 
-import View from '@core/view';
+import Component from '@core/component';
 import Block from '@components/block';
 
-export default class App extends View {
+export default class App extends Component {
     init(props) {
         this.initBlocks(props.blocks);
     }
@@ -47,7 +47,7 @@ export default class App extends View {
 
     findBlockById(id) {
         return this.blocks.find(block => {
-            return block.view_id === id;
+            return block.cid === id;
         });
     }
 

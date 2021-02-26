@@ -1,10 +1,10 @@
-import View from '@core/view';
+import Component from '@core/component';
 import icon_remove from '@icons/remove';
 
-export default class Task extends View {
+export default class Task extends Component {
     template(props) {
         return `
-            <div data-id=${this.view_id} class="todolist__task">
+            <div data-id=${this.cid} class="todolist__task">
                 <div class="todolist__task-text">${props.text}</div>
                 <div class="todolist__task-edit hidden">
                     <div class="todolist__task-edit-panel">

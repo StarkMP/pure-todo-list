@@ -5,6 +5,6 @@ export const uuidv4 = () => {
     });
 };
 
-export const viewCompare = (left, right) => {
-    return left.view_id === right.view_id;
+export const componentsCompare = (left, right) => {
+    return left.cid === right.cid;
 };

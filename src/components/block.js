@@ -1,14 +1,14 @@
 import Task from '@components/task';
-import View from '@core/view';
-import { viewCompare } from '@core/utils';
+import Component from '@core/component';
+import { componentsCompare } from '@core/utils';
 
-export default class Block extends View {
+export default class Block extends Component {
     template(props) {
         return `
             <div class="todolist__block">
                 <div class="todolist__block-name">${props.name}</div>
                 <span class="todolist__block-name-divider"></span>
-                <div data-id=${this.view_id} class="todolist__block-tasks"></div>
+                <div data-id=${this.cid} class="todolist__block-tasks"></div>
             </div>
         `;
     }
@@ -46,7 +46,7 @@ export default class Block extends View {
     }
 
     removeTask(task) {
-        const index = this.tasks.findIndex(t => viewCompare(t, task));
+        const index = this.tasks.findIndex(t => componentsCompare(t, task));
 
         if (index === -1) {
             return;

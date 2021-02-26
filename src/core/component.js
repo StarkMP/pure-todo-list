@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { uuidv4 } from '@core/utils';
 
-export default class View {
+export default class Component {
     template(props) {
         return '';
     }
@@ -15,12 +15,12 @@ export default class View {
     }
 
     constructor(params) {
-        if (new.target === View) {
-            throw new Error('Cannot construct View instances directly')
+        if (new.target === Component) {
+            throw new Error('Cannot construct Component instances directly')
         }
 
         const { $el, props = {} } = params;
-        this.view_id = uuidv4();
+        this.cid = uuidv4();
 
         if ($el) {
             if (!$el.length) {

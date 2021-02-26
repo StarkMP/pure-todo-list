@@ -39,10 +39,10 @@ export default class View {
         }
 
         this.init(props);
-        this.initEvents();
+        this._initEvents();
     }
 
-    initEvents() {
+    _initEvents() {
         const events = this.events();
 
         if (!events.length) {
@@ -51,10 +51,15 @@ export default class View {
 
         this.active_events = events.map(event => {
             const e = {
-                $selector: event[1],
-                name: event[0],
-                callback: event[2]
+                name: event[0]
             };
+
+            if (!event[2]) {
+                e.callback = event[1];
+            } else {
+                e.$selector = event[1];
+                e.callback = event[2];
+            }
 
             if (e.$selector) {
                 this.$el.on(e.name, e.$selector, e.callback);
@@ -66,7 +71,7 @@ export default class View {
         });
     }
 
-    destroyEvents() {
+    _destroyEvents() {
         if (!this.active_events.length) {
             return;
         }
@@ -95,7 +100,7 @@ export default class View {
     }
 
     remove() {
-        this.destroyEvents();
+        this._destroyEvents();
         this.$el.remove();
     }
 

@@ -27,14 +27,18 @@ export default class Block extends View {
         };
     }
 
-    createTask(params = {}) {
-        const task = new Task({
+    newTask(props = {}) {
+        return new Task({
             props: {
-                ...params,
+                ...props,
                 save: this.save,
                 remove: this.removeTask.bind(this)
             }
         });
+    }
+
+    createTask(props = {}) {
+        const task = this.newTask(props);
 
         this.tasks.unshift(task);
         this.$('list').prepend(task.$el);
@@ -55,13 +59,7 @@ export default class Block extends View {
 
     initTasks(tasks) {
         this.tasks = tasks.map(props => {
-            const task = new Task({
-                props: {
-                    ...props,
-                    save: this.save,
-                    remove: this.removeTask.bind(this)
-                }
-            });
+            const task = this.newTask(props);
 
             this.$('list').append(task.$el);
             

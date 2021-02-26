@@ -48,7 +48,7 @@ export default class Task extends View {
 
     events() {
         return [
-            ['click', '', this.edit.bind(this)],
+            ['click', this.edit.bind(this)],
             ['click', '.todolist__task-save', this.save.bind(this)],
             ['click', '.todolist__task-cancel', this.cancelEdit.bind(this)],
             ['change', '.todolist__task-color-input', this.onColorChange.bind(this)],

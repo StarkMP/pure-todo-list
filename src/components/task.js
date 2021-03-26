@@ -83,6 +83,10 @@ export default class Task extends Component {
         this.$el.css(css);
     }
 
+    switchSortable() {
+        this.$el.toggleClass('sortable-filtered');
+    }
+
     edit() {
         if (this.is_editing) {
             return;
@@ -101,6 +105,7 @@ export default class Task extends Component {
 
         this.$('edit').removeClass('hidden');
         this.is_editing = true;
+        this.switchSortable();
     }
 
     save(e) {
@@ -123,5 +128,6 @@ export default class Task extends Component {
         this.$('edit').addClass('hidden');
         this.$('area').val(this.text);
         this.is_editing = false;
+        this.switchSortable();
     }
 }

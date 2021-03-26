@@ -40,7 +40,8 @@ export default class App extends Component {
                 easing: 'cubic-bezier(1, 0, 0, 1)',
                 dragClass: 'todolist__task-draggable',
                 ghostClass: 'todolist__task-ghost',
-                onEnd: this.onTaskSort.bind(this)
+                onEnd: this.onTaskSort.bind(this),
+                filter: '.sortable-filtered'
             });
         });
     }

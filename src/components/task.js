@@ -96,8 +96,8 @@ export default class Task extends Component {
         const pos = this.$el.position();
 
         this.findEl('.todolist__task-edit-panel').css({
-           top: pos.top + 'px',
-           left: pos.left + 'px'
+            top: pos.top + 'px',
+            left: pos.left + 'px'
         });
 
         this.findEl('.todolist__task-color').css({
@@ -115,7 +115,7 @@ export default class Task extends Component {
         const color = this.$('color').val();
 
         this.setText(text);
-        this.setColor(color)
+        this.setColor(color);
         this.cancelEdit();
         this.saveToStorage();
     }

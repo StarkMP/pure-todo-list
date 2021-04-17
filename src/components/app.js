@@ -10,20 +10,18 @@ export default class App extends Component {
     }
 
     events() {
-        return [
-            ['click', '.todolist__btn', this.addTask.bind(this)]
-        ];
+        return [['click', '.todolist__btn', this.addTask.bind(this)]];
     }
 
     initBlocks(blocks) {
-        this.blocks = blocks.map(props => {
+        this.blocks = blocks.map((props) => {
             const block = new Block({
                 props: {
                     ...props,
-                    save: this.save.bind(this)
-                }
+                    save: this.save.bind(this),
+                },
             });
-            
+
             this.findEl('.todolist__blocks').append(block.$el);
 
             return block;
@@ -33,7 +31,7 @@ export default class App extends Component {
     }
 
     initSortable() {
-        this.blocks.forEach(block => {
+        this.blocks.forEach((block) => {
             new Sortable(block.findEl('.todolist__block-tasks').get(0), {
                 handle: '.todolist__task',
                 group: 'blocks',
@@ -49,7 +47,7 @@ export default class App extends Component {
     }
 
     findBlockById(id) {
-        return this.blocks.find(block => {
+        return this.blocks.find((block) => {
             return block.cid === id;
         });
     }
@@ -74,7 +72,7 @@ export default class App extends Component {
             return;
         }
 
-        return this.blocks.find(block => block.is_default);
+        return this.blocks.find((block) => block.is_default);
     }
 
     addTask() {
@@ -95,18 +93,18 @@ export default class App extends Component {
         const model = {};
         const blocks = [];
 
-        this.blocks.forEach(block => {
-            const tasks = block.tasks.map(task => {
+        this.blocks.forEach((block) => {
+            const tasks = block.tasks.map((task) => {
                 return {
                     text: task.text,
-                    color: task.color
+                    color: task.color,
                 };
             });
 
             blocks.push({
                 name: block.name,
                 is_default: block.is_default,
-                tasks
+                tasks,
             });
         });
 

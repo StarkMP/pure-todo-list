@@ -6,7 +6,7 @@ export default class Component {
         return left.cid === right.cid;
     }
 
-    template(props) {
+    template() {
         return '';
     }
 
@@ -20,7 +20,7 @@ export default class Component {
 
     constructor(params) {
         if (new.target === Component) {
-            throw new Error('Cannot construct Component instances directly')
+            throw new Error('Cannot construct Component instances directly');
         }
 
         const { $el, props = {} } = params;
@@ -30,16 +30,16 @@ export default class Component {
             if (!$el.length) {
                 throw new Error('jQuery element is not defined');
             }
-            
+
             this.$el = $el;
         } else {
             const template = this.template(props);
 
             this.$el = $(template);
 
-            this.template = function() {
+            this.template = function () {
                 return template;
-            }
+            };
         }
 
         this.init(props);
@@ -53,9 +53,9 @@ export default class Component {
             return;
         }
 
-        this.active_events = events.map(event => {
+        this.active_events = events.map((event) => {
             const e = {
-                name: event[0]
+                name: event[0],
             };
 
             if (!event[2]) {
@@ -80,7 +80,7 @@ export default class Component {
             return;
         }
 
-        this.active_events.forEach(e => {
+        this.active_events.forEach((e) => {
             if (e.$selector) {
                 this.$el.off(e.name, e.$selector, e.callback);
             } else {
@@ -108,5 +108,5 @@ export default class Component {
         this.$el.remove();
     }
 
-    init(props) {}
+    init() {}
 }

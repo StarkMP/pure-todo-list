@@ -22,7 +22,7 @@ export default class Block extends Component {
 
     selectors() {
         return {
-            list: '.todolist__block-tasks'
+            list: '.todolist__block-tasks',
         };
     }
 
@@ -31,8 +31,8 @@ export default class Block extends Component {
             props: {
                 ...props,
                 save: this.save,
-                remove: this.removeTask.bind(this)
-            }
+                remove: this.removeTask.bind(this),
+            },
         });
     }
 
@@ -45,7 +45,7 @@ export default class Block extends Component {
     }
 
     removeTask(task) {
-        const index = this.tasks.findIndex(t => Component.compare(t, task));
+        const index = this.tasks.findIndex((t) => Component.compare(t, task));
 
         if (index === -1) {
             return;
@@ -57,11 +57,11 @@ export default class Block extends Component {
     }
 
     initTasks(tasks) {
-        this.tasks = tasks.map(props => {
+        this.tasks = tasks.map((props) => {
             const task = this.newTask(props);
 
             this.$('list').append(task.$el);
-            
+
             return task;
         });
     }

@@ -13,18 +13,18 @@ function getData() {
                 tasks: [
                     { text: 'Тестовое задание 1', color: '#F85AAF' },
                     { text: 'Тестовое задание 2', color: '#F85AAF' },
-                    { text: 'Тестовое задание 3', color: '#F85AAF' }
-                ]
+                    { text: 'Тестовое задание 3', color: '#F85AAF' },
+                ],
             },
             {
                 name: 'In Progress',
-                tasks: []
+                tasks: [],
             },
             {
                 name: 'Done',
-                tasks: []
+                tasks: [],
             },
-        ]
+        ],
     };
 
     return model;
@@ -32,5 +32,5 @@ function getData() {
 
 new App({
     $el: $('#app'),
-    props: getData()
+    props: getData(),
 });

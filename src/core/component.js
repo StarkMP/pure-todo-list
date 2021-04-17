@@ -2,6 +2,10 @@ import $ from 'jquery';
 import { uuidv4 } from '@core/utils';
 
 export default class Component {
+    static compare(left, right) {
+        return left.cid === right.cid;
+    }
+
     template(props) {
         return '';
     }

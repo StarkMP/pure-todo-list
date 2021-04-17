@@ -54,7 +54,7 @@ export default class App extends Component {
     onTaskSort(e) {
         const block_from = this.findBlockById($(e.from).attr('data-id'));
         const block_to = this.findBlockById($(e.to).attr('data-id'));
-        const task = block_from.tasks.splice(e.oldIndex, 1)[0]
+        const task = block_from.tasks.splice(e.oldIndex, 1)[0];
 
         block_to.tasks.splice(e.newIndex, 0, task);
         task.removeFromBlock = block_to.removeTask.bind(block_to);

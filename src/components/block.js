@@ -1,6 +1,5 @@
 import Task from '@components/task';
 import Component from '@core/component';
-import { componentsCompare } from '@core/utils';
 
 export default class Block extends Component {
     template(props) {
@@ -46,7 +45,7 @@ export default class Block extends Component {
     }
 
     removeTask(task) {
-        const index = this.tasks.findIndex(t => componentsCompare(t, task));
+        const index = this.tasks.findIndex(t => Component.compare(t, task));
 
         if (index === -1) {
             return;

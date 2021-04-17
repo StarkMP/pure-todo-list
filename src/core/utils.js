@@ -4,7 +4,3 @@ export const uuidv4 = () => {
         return v.toString(16);
     });
 };
-
-export const componentsCompare = (left, right) => {
-    return left.cid === right.cid;
-};

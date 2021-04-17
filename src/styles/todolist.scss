@@ -164,4 +164,13 @@
             }
         }
     }
+
+    &__credits {
+        display: flex;
+        margin-top: 40px;
+
+        a:first-child {
+            margin-right: 10px;
+        }
+    }
 }

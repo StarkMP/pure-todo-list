@@ -56,6 +56,11 @@ export default class Task extends Component {
         ];
     }
 
+    setEditStatus(is_editing) {
+        this.is_editing = is_editing;
+        this.$el.toggleClass('sortable-filtered', is_editing);
+    }
+
     onRemove() {
         this.removeFromBlock(this);
     }
@@ -100,7 +105,7 @@ export default class Task extends Component {
         });
 
         this.$('edit').removeClass('hidden');
-        this.is_editing = true;
+        this.setEditStatus(true);
     }
 
     save(e) {
@@ -122,6 +127,6 @@ export default class Task extends Component {
 
         this.$('edit').addClass('hidden');
         this.$('area').val(this.text);
-        this.is_editing = false;
+        this.setEditStatus(false);
     }
 }

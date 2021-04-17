@@ -35,12 +35,15 @@ export default class App extends Component {
     initSortable() {
         this.blocks.forEach(block => {
             new Sortable(block.findEl('.todolist__block-tasks').get(0), {
+                handle: '.todolist__task',
                 group: 'blocks',
                 animation: 150,
                 easing: 'cubic-bezier(1, 0, 0, 1)',
                 dragClass: 'todolist__task-draggable',
                 ghostClass: 'todolist__task-ghost',
-                onEnd: this.onTaskSort.bind(this)
+                onEnd: this.onTaskSort.bind(this),
+                filter: '.sortable-filtered',
+                preventOnFilter: false,
             });
         });
     }

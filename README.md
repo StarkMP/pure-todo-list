@@ -1,3 +1,1 @@
-# Simple todo list
-
-Job for portfolio.
+# Simple todo list (Frontend)
